@@ -28,15 +28,16 @@ public class LineFeeder {
         return new Sequencer();
     }
 
-    class Sequencer{
+    public class Sequencer{
         public String nextLine(){
-            String line="";
+            String line;
             try {
                 line = bufferedReader.readLine();
-            } catch (IOException e){
+            } catch (Exception e){
+                System.out.println("ger line failed");
                 return null;
             }
-            return line;
+            return  line;
         }
     }
 }
