@@ -32,7 +32,7 @@ public class Server {
             boolean done = false;
             while(!done && scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                serverOutput.println("Echo from  Server: " + line);
+                serverOutput.println("Echo from  Network: " + line);
                 if(line.toLowerCase().trim().equals("stop")) {
                     done = true;
                 }

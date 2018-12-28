@@ -1,4 +1,4 @@
-package com.zheliu.querier;
+package com.zheliu.querier.FileHandler;
 
 import java.io.*;
 
@@ -34,7 +34,8 @@ public class LineFeeder {
             try {
                 line = bufferedReader.readLine();
             } catch (Exception e){
-                System.out.println("ger line failed");
+                System.out.println("get line from:"+ fileName +" failed");
+
                 return null;
             }
             return  line;
