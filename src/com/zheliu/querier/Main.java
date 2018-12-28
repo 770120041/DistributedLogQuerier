@@ -16,10 +16,11 @@ public class Main {
         SingleFileTest singleFileTest = new SingleFileTest("public",rootPath+"testData.txt");
         singleFileTest.test();
 
-        FolderGrepTest folderGrepTest = new FolderGrepTest("public",rootPath,".*\\\\.txt");
+        FolderGrepTest folderGrepTest = new FolderGrepTest("public",rootPath,".*\\.txt");
         folderGrepTest.test();
 
-
+        folderGrepTest = new FolderGrepTest("public",rootPath,".*\\.txt");
+        folderGrepTest.test();
 
 
     }

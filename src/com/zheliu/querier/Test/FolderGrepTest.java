@@ -10,13 +10,13 @@ public class FolderGrepTest {
     public FolderGrepTest(String reg,String folderPath,String regFileName) {
         this.regContent = reg;
         this.folderPath = folderPath;
-//        this.regFileName = regFileName;
+        this.regFileName = regFileName;
     }
     public void test(){
         System.out.println("Performing folder grep test:");
         System.out.println("FolderPath:"+folderPath);
 
-        FolderGreper folderGreper = new FolderGreper(folderPath);
+        FolderGreper folderGreper = new FolderGreper(folderPath,regFileName);
         System.out.println("filenames:"+folderGreper.getFileNames());
 
         int grepResultLength = folderGreper.grepFolder(regContent).size();

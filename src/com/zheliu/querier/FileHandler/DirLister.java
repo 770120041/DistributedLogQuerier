@@ -3,6 +3,7 @@ package com.zheliu.querier.FileHandler;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 /*
     used to list all fils in a given class
@@ -35,21 +36,13 @@ public class DirLister {
     }
     public ArrayList<String> list(){
         File path = new File(dirPath);
-        for (String x: path.list()
-             ) {
-            res.add(x);
-        }
+        res.addAll(Arrays.asList(path.list()));
         return res;
     }
     public ArrayList<String> list(String reg){
 
         File path = new File(dirPath);
-
-        this.dirFilter = new DirFilter(reg);
-        for (String x: path.list(dirFilter)
-        ) {
-            res.add(x);
-        }
+        res.addAll(Arrays.asList(path.list(new DirFilter(reg))));
         return res;
     }
 

@@ -1,4 +1,4 @@
-package com.zheliu.querier;
+package com.zheliu.querier.Network;
 
 import java.io.InputStream;
 import java.io.OutputStream;
