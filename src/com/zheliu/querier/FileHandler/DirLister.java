@@ -11,38 +11,39 @@ import java.util.regex.Pattern;
     (in my program only used to grep suffix)
  */
 
-class DirFilter implements FilenameFilter{
-    private Pattern pattern;
 
-    public DirFilter(String reg) {
-        this.pattern = Pattern.compile(reg);
-    }
-
-    @Override
-    public boolean accept(File dir, String name) {
-        return pattern.matcher(name).matches();
-    }
-}
 
 public class DirLister {
+    /*
+        Using anonymous inner class to implement fileFilter
+     */
+    public static FilenameFilter filenameFilter(String reg){
+        return new FilenameFilter (){
+            private Pattern pattern = Pattern.compile(reg);
+            public boolean  accept(File dir,String name){
+                return pattern.matcher(name).matches();
+            }
+        };
+
+    }
+
     private String dirPath;
-    private DirFilter dirFilter;
     ArrayList<String> res = new ArrayList<String>();
 
     public DirLister(String dirPath) {
         this.dirPath = dirPath;
         this.res = new ArrayList<String>();
-
     }
+
     public ArrayList<String> list(){
         File path = new File(dirPath);
         res.addAll(Arrays.asList(path.list()));
         return res;
     }
-    public ArrayList<String> list(String reg){
 
+    public ArrayList<String> list(String reg){
         File path = new File(dirPath);
-        res.addAll(Arrays.asList(path.list(new DirFilter(reg))));
+        res.addAll(Arrays.asList(path.list(filenameFilter(reg))));
         return res;
     }
 
