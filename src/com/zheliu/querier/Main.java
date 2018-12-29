@@ -1,6 +1,5 @@
 package com.zheliu.querier;
 
-import com.zheliu.querier.FileHandler.DirLister;
 import com.zheliu.querier.Test.FolderGrepTest;
 import com.zheliu.querier.Test.SingleFileTest;
 
@@ -10,9 +9,7 @@ public class Main {
      */
     static final String rootPath = "E:\\projects\\DistributedGreper\\src\\data\\";
 
-    public static void main(String[] args) {
-
-        //test for single file
+    private static  void unitTest(){
         SingleFileTest singleFileTest = new SingleFileTest("public",rootPath+"testData.txt");
         singleFileTest.test();
 
@@ -21,6 +18,12 @@ public class Main {
 
         folderGrepTest = new FolderGrepTest("public",rootPath,".*\\.txt");
         folderGrepTest.test();
+
+    }
+
+    public static void main(String[] args) {
+        unitTest();
+
 
 
     }
