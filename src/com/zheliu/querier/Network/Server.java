@@ -23,9 +23,12 @@ public class Server {
         this.resultPath = resultPath;
         try {
             this.serverSocket = new ServerSocket(port);
+            System.out.println("Server started at:"+InetAddress.getLocalHost()+":"+port);
         } catch (Exception e){
             e.printStackTrace();
         }
+
+
 
     }
     public void listen(){

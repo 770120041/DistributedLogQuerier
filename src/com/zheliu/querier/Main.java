@@ -59,16 +59,16 @@ public class Main {
             isServer = false;
         }
 
-        clientPort = Integer.parseInt(args[1]);
+
 
         try {
-            address = InetAddress.getByName("127.0.0.1");;
+            address = InetAddress.getLocalHost();
         }catch (Exception e){
             System.out.println("cannot get local host address");
         }
 
         if(args.length>2){
-            rootPath += args[2]+"\\";
+            rootPath += args[1]+"\\";
         }
 
     }
@@ -92,7 +92,7 @@ public class Main {
         if(isServer){
             Server server = new Server(serverPort,resultPath);
         }
-        Interpreter interpreter = new Interpreter(address,clientPort,rootPath);
+        Interpreter interpreter = new Interpreter(address,serverPort,rootPath);
         interpreter.interprept();
 
 
