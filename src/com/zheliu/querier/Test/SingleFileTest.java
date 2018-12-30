@@ -2,6 +2,8 @@ package com.zheliu.querier.Test;
 
 import com.zheliu.querier.Greper.FileGreper;
 
+import java.util.ArrayList;
+
 /*
     Unit test for Single File Greper
  */
@@ -15,11 +17,11 @@ public class SingleFileTest {
     }
     public void test(){
         System.out.println("Performing Test for Single File:");
-        int grepResult = fileGreper.grepFile(reg).size();
+        ArrayList<String> result = fileGreper.grepFile(reg);
+        int grepResult = result.size();
         assert grepResult == presetResult ;
         System.out.println("GrepResult:"+ grepResult+" vs PresetResult:"+presetResult);
         System.out.println();
-
     }
 }
 

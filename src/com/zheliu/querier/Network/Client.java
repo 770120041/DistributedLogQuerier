@@ -14,6 +14,7 @@ public class Client {
             this.socket = new Socket(address,port);
         }catch (Exception e){
             System.out.println("Cannot creat Socket for port:"+port);
+            throw new RuntimeException("cannot initial socket");
         }
     }
     public void sendToServer(ArrayList<String> msg){
@@ -21,7 +22,8 @@ public class Client {
             OutputStream os =  socket.getOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(os);
             oos.writeObject(msg);
-            socket.close();
+            os.close();
+            oos.close();
         }catch (Exception e){
             System.out.println("Exception in Client.java in method sendToServer");
         }

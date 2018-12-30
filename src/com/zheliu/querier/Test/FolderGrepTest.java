@@ -1,6 +1,8 @@
 package com.zheliu.querier.Test;
 
 import com.zheliu.querier.Greper.FolderGreper;
+
+import java.util.ArrayList;
 /*
     Unit Test for Folder Greper
  */
@@ -22,7 +24,8 @@ public class FolderGrepTest {
         FolderGreper folderGreper = new FolderGreper(folderPath,regFileName);
         System.out.println("filenames:"+folderGreper.getFileNames());
 
-        int grepResultLength = folderGreper.grepFolder(regContent).size();
+        ArrayList<String> result =  folderGreper.grepFolder(regContent);
+        int grepResultLength = result.size();
         assert grepResultLength == predefinedResult;
         System.out.println("FolderGreper:"+grepResultLength+" vs PredefinedResult:"+predefinedResult);
         System.out.println();
