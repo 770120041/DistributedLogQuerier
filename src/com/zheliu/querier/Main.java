@@ -3,6 +3,8 @@ package com.zheliu.querier;
 import com.zheliu.querier.Test.FolderGrepTest;
 import com.zheliu.querier.Test.SingleFileTest;
 
+import java.util.ArrayList;
+
 public class Main {
     /*
         The log file Root path is hard coded. Change it to your directory for your data
@@ -24,7 +26,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        unitTest();
+//        unitTest();
 
     }
 }
