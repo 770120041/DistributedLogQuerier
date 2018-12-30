@@ -27,7 +27,9 @@ public class Interpreter {
             if(reg.equals("quit") || reg.equals("exit")){
                 break;
             }
+            System.out.println(rootPath);
             FolderGreper folderGreper = new FolderGreper(rootPath,".*");
+            System.out.println("filenames:"+folderGreper.getFileNames());
             client.sendToServer(folderGreper.grepFolder(reg));
 
         }

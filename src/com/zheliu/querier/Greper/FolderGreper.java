@@ -35,6 +35,7 @@ public class FolderGreper {
         for (String file: fileNames
              ) {
             //must contain dirpath first
+
             FileGreper fileGreper = new FileGreper(dirPath + file);
             result.addAll(fileGreper.grepFile(reg));
         }

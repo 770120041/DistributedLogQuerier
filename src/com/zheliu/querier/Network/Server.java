@@ -35,6 +35,7 @@ public class Server {
         while (true){
             try {
                 Socket socket = serverSocket.accept();
+                System.out.println("Server received message from port:"+socket.getPort());
                 ClientHandler clientHandler = new ClientHandler(socket, "client"+counter,resultPath);
                 clientHandler.start();
                 counter++;

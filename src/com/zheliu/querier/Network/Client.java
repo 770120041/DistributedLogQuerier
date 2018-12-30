@@ -20,6 +20,7 @@ public class Client {
     }
     public void sendToServer(ArrayList<String> msg){
         try {
+            System.out.println("client send message to Server!");
             OutputStream os =  socket.getOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(os);
             oos.writeObject(msg);

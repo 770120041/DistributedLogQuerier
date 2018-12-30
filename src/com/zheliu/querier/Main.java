@@ -67,7 +67,7 @@ public class Main {
             System.out.println("cannot get local host address");
         }
 
-        if(args.length>2){
+        if(args.length>1){
             rootPath += args[1]+"\\";
         }
 
