@@ -9,6 +9,8 @@ public class Main {
      */
     static final String rootPath = "E:\\projects\\DistributedGreper\\src\\data\\";
 
+
+    /*Unitest*/
     private static  void unitTest(){
         SingleFileTest singleFileTest = new SingleFileTest("public",rootPath+"testData.txt");
         singleFileTest.test();
@@ -23,8 +25,6 @@ public class Main {
 
     public static void main(String[] args) {
         unitTest();
-
-
 
     }
 }
