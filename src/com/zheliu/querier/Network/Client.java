@@ -6,6 +6,11 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 
+
+/*
+    Client shall open a socket Each time, and close it afterwards
+    Shall not maintain a socket, because it will make it hard to determine when it stops
+ */
 public class Client {
     private Socket socket;
 
@@ -14,7 +19,6 @@ public class Client {
             this.socket = new Socket(address,port);
         }catch (Exception e){
             System.out.println("Cannot creat Socket for port:"+port);
-            System.out.println(e.getMessage());
             throw new RuntimeException("cannot initial socket");
         }
     }
@@ -26,6 +30,8 @@ public class Client {
             oos.writeObject(msg);
             os.close();
             oos.close();
+            socket.close();
+            System.out.println("socket closed");
         }catch (Exception e){
             System.out.println("Exception in Client.java in method sendToServer");
         }

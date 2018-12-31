@@ -91,6 +91,7 @@ public class Main {
          */
         if(isServer){
             Server server = new Server(serverPort,resultPath);
+            server.start();
         }
         Interpreter interpreter = new Interpreter(address,serverPort,rootPath);
         interpreter.interprept();

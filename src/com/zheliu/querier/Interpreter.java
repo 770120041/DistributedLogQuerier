@@ -11,13 +11,14 @@ import java.net.InetAddress;
 import java.util.Scanner;
 
 public class Interpreter {
-    private Client client;
     private String rootPath;
+    private int serverPort;
+    private InetAddress serverAddr;
 
-    public Interpreter(InetAddress address,int clientPort,String rootPath) {
-        System.out.println(address+" "+clientPort);
-        client = new Client(address,clientPort);
+    public Interpreter(InetAddress serverAddr,int serverPort,String rootPath) {
         this.rootPath = rootPath;
+        this.serverPort = serverPort;
+        this.serverAddr = serverAddr;
     }
 
     public void interprept(){
@@ -30,6 +31,7 @@ public class Interpreter {
             System.out.println(rootPath);
             FolderGreper folderGreper = new FolderGreper(rootPath,".*");
             System.out.println("filenames:"+folderGreper.getFileNames());
+            Client client = new Client(serverAddr,serverPort);
             client.sendToServer(folderGreper.grepFolder(reg));
 
         }

@@ -1,7 +1,10 @@
 package com.zheliu.querier.Network;
 
 import java.io.*;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
+import java.util.ArrayList;
 
 public class ClientHandler extends Thread {
     private Socket socket;
@@ -13,16 +16,21 @@ public class ClientHandler extends Thread {
         this.filePath=filePath;
     }
 
-    @Override
+
     public void run(){
         try {
-            InputStream is = socket.getInputStream();
-            FileOutputStream fw = new FileOutputStream(name+".file");
-            is.transferTo(fw);
-            fw.close();
-            is.close();
 
-            System.out.println("Server Write to file finished");
+            InputStream is = socket.getInputStream();
+            ObjectInputStream ois = new ObjectInputStream(is);
+            ArrayList<String> msg = (ArrayList<String>) ois.readObject();
+
+            System.out.println("Server received:");
+            for (String x: msg
+                ) {
+                System.out.println(x);
+            }
+            ois.close();
+            socket.close();
 
         }catch (Exception e){
             System.out.println("Exception happended at ClientHandler.java");

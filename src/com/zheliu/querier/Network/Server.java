@@ -8,7 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Server {
+public class Server extends Thread{
     ServerSocket serverSocket;
     private  int counter;// used for different file names
     private String resultPath;
@@ -31,7 +31,8 @@ public class Server {
 
 
     }
-    public void listen(){
+    @Override
+    public void run(){
         while (true){
             try {
                 Socket socket = serverSocket.accept();
