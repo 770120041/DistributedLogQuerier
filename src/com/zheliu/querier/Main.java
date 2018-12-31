@@ -1,14 +1,10 @@
 package com.zheliu.querier;
 
-import com.zheliu.querier.Greper.FolderGreper;
-import com.zheliu.querier.Network.Client;
-import com.zheliu.querier.Network.Server;
+import com.zheliu.querier.Com.Server;
 import com.zheliu.querier.Test.FolderGrepTest;
 import com.zheliu.querier.Test.SingleFileTest;
 
-import java.net.Inet4Address;
 import java.net.InetAddress;
-import java.util.ArrayList;
 
 public class Main {
     /*
@@ -17,11 +13,17 @@ public class Main {
     static String rootPath = "E:\\projects\\DistributedGreper\\src\\data\\";
     static String resultPath = rootPath+"\\result\\";
 
-    static InetAddress address;
-    static final int serverPort = 3666;
-    static int clientPort;
 
-    static boolean isServer;
+    /*
+        Have one special member as Introducer, and he manages the group membership
+        The introducer's port number is hard decoded;
+        If using in real network, neeed to setup Intro IP address mannualy
+     */
+    static InetAddress address;
+    static int serverPort = 3666;
+    static final int introducerPort = 9000;
+
+    static boolean isIntro = false;
     /*Unitest*/
     private static  void unitTest(){
         rootPath += "test\\";
@@ -38,37 +40,33 @@ public class Main {
         folderGrepTest.test();
 
 
-
-
-
     }
 
 
     /*
+        Actually everyone has a server. When we grep a word, the server will send to all hosts.
+        And after that, each host send the result back to the server. And the server printed out the result.
+
+
         For arguments:
-        argument 0: determine if it is server
-        argument 1: port number for client
-        argumetn 2: clinet root path
+        argument 0: port number for the server
+        argumetn 1: file root path
      */
 
-    static void setUpNetwork(String[] args){
-        if (args[0].equals("server")){
-            isServer = true;
-        }
-        else {
-            isServer = false;
-        }
+    static void setUpServer(String[] args){
 
 
 
+        serverPort = Integer.parseInt(args[0]);
         try {
             address = InetAddress.getLocalHost();
         }catch (Exception e){
             System.out.println("cannot get local host address");
         }
 
-        if(args.length>1){
-            rootPath += args[1]+"\\";
+        rootPath += args[1]+"\\";
+        if(args.length>2){
+            isIntro = true;
         }
 
     }
@@ -78,21 +76,26 @@ public class Main {
 //        unitTest();
 
         if(args.length <2){
-            System.out.println("needs more args for qurey");
+            System.out.println("needs more args for server set up");
             return;
         }
         else{
-            setUpNetwork(args);
+            setUpServer(args);
         }
 
 
         /*
-            set up server and Client here
+            set up server here
          */
-        if(isServer){
+        if(isIntro){
+            Server server = new Server(introducerPort,resultPath);
+        }
+        else{
             Server server = new Server(serverPort,resultPath);
             server.start();
         }
+
+
         Interpreter interpreter = new Interpreter(address,serverPort,rootPath);
         interpreter.interprept();
 

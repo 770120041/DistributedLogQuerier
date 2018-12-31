@@ -1,9 +1,7 @@
-package com.zheliu.querier.Network;
+package com.zheliu.querier.Com;
 
 import java.io.*;
-import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.SocketAddress;
 import java.util.ArrayList;
 
 public class ClientHandler extends Thread {

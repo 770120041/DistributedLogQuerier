@@ -1,12 +1,10 @@
-package com.zheliu.querier.Network;
+package com.zheliu.querier.Com;
 
 import com.zheliu.querier.FileHandler.FolderCleaner;
 
-import java.io.*;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Server extends Thread{
     ServerSocket serverSocket;

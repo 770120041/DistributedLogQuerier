@@ -1,9 +1,8 @@
 package com.zheliu.querier.Test;
 
-import com.zheliu.querier.Network.Client;
+import com.zheliu.querier.Com.Client;
 
 import java.net.InetAddress;
-import java.net.Socket;
 import java.util.ArrayList;
 
 public class ServerClientTest {

@@ -1,12 +1,8 @@
 package com.zheliu.querier;
 
 import com.zheliu.querier.Greper.FolderGreper;
-import com.zheliu.querier.Network.Client;
-import com.zheliu.querier.Test.FolderGrepTest;
+import com.zheliu.querier.Com.Client;
 
-import java.io.DataInputStream;
-import java.io.StringBufferInputStream;
-import java.io.StringReader;
 import java.net.InetAddress;
 import java.util.Scanner;
 
