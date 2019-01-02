@@ -1,7 +1,6 @@
 package com.zheliu.querier.MemberShip;
 /*
-    Member Table for each node
-    introducer need to distribute member table for each new node.
+    Using Json to hard coded all the members
  */
 public class MemberTable {
 

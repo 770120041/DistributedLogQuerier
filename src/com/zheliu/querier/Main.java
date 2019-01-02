@@ -54,9 +54,6 @@ public class Main {
      */
 
     static void setUpServer(String[] args){
-
-
-
         serverPort = Integer.parseInt(args[0]);
         try {
             address = InetAddress.getLocalHost();
