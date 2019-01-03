@@ -8,36 +8,28 @@ import java.net.Socket;
 
 public class Server extends Thread{
     ServerSocket serverSocket;
-    private  int counter;// used for different file names
-    private String resultPath;
-    public Server(int port,String resultPath) {
-        /*
-            If not exist: create it. Otherwise clean it
-         */
-        FolderCleaner folderCleaner = new FolderCleaner(resultPath);
-        folderCleaner.clean();
+    private String rootPath;
+    public Server(int port,String rootPath) {
 
-        counter = 0;
-        this.resultPath = resultPath;
+//        FolderCleaner folderCleaner = new FolderCleaner(rootPath);
+//        folderCleaner.clean();
+        this.rootPath = rootPath;
         try {
             this.serverSocket = new ServerSocket(port);
             System.out.println("Server started at:"+InetAddress.getLocalHost()+":"+port);
         } catch (Exception e){
             e.printStackTrace();
         }
-
-
-
     }
+
     @Override
     public void run(){
         while (true){
             try {
                 Socket socket = serverSocket.accept();
                 System.out.println("Server received message from port:"+socket.getPort());
-                ClientHandler clientHandler = new ClientHandler(socket, "client"+counter,resultPath);
+                ClientHandler clientHandler = new ClientHandler(socket,serverSocket.getInetAddress().toString() +serverSocket.getLocalPort() ,rootPath);
                 clientHandler.start();
-                counter++;
             }catch (Exception e){
                 e.printStackTrace();
             }

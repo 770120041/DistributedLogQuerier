@@ -10,8 +10,7 @@ public class Main {
     /*
         The log file Root path is hard coded. Change it to your directory for your data
      */
-    static String rootPath = "E:\\projects\\DistributedGreper\\src\\data\\";
-    static String resultPath = rootPath+"\\result\\";
+    static String rootPath = "E:\\projects\\DistributedGreper\\src\\data\\";;
 
 
     /*
@@ -62,10 +61,6 @@ public class Main {
         }
 
         rootPath += args[1]+"\\";
-        if(args.length>2){
-            isIntro = true;
-        }
-
     }
 
     public static void main(String[] args) {
@@ -84,16 +79,13 @@ public class Main {
         /*
             set up server here
          */
-        if(isIntro){
-            Server server = new Server(introducerPort,resultPath);
-        }
-        else{
-            Server server = new Server(serverPort,resultPath);
-            server.start();
-        }
 
 
-        Interpreter interpreter = new Interpreter(address,serverPort,rootPath);
+        Server server = new Server(serverPort,rootPath);
+        server.start();
+
+
+        Interpreter interpreter = new Interpreter(rootPath,address,serverPort);
         interpreter.interprept();
 
 
