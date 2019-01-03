@@ -8,48 +8,27 @@ import java.net.InetAddress;
 
 public class Main {
     /*
-        The log file Root path is hard coded. Change it to your directory for your data
+        The log file Root path is hard coded. Change it to your directory to where your data is stored
      */
     static String rootPath = "E:\\projects\\DistributedGreper\\src\\data\\";;
 
 
-    /*
-        Have one special member as Introducer, and he manages the group membership
-        The introducer's port number is hard decoded;
-        If using in real network, neeed to setup Intro IP address mannualy
-     */
+
     static InetAddress address;
-    static int serverPort = 3666;
-    static final int introducerPort = 9000;
+    static int serverPort;
 
     static boolean isIntro = false;
-    /*Unitest*/
-    private static  void unitTest(){
-        rootPath += "test\\";
-
-        SingleFileTest singleFileTest = new SingleFileTest("public",rootPath+"testData.txt");
-        singleFileTest.test();
-
-        //accept all files
-        FolderGrepTest folderGrepTest = new FolderGrepTest("public",rootPath,".*");
-        folderGrepTest.test();
-
-        //accpet only txt files
-        folderGrepTest = new FolderGrepTest("public",rootPath,".*\\.txt");
-        folderGrepTest.test();
 
 
-    }
 
 
     /*
-        Actually everyone has a server. When we grep a word, the server will send to all hosts.
+        Actually node has a server. When we grep a word, the node will send to all servers in the whole member table.
         And after that, each host send the result back to the server. And the server printed out the result.
-
 
         For arguments:
         argument 0: port number for the server
-        argumetn 1: file root path
+        argumetn 1: data may reside in a subFolder of the root path
      */
 
     static void setUpServer(String[] args){
@@ -64,7 +43,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        /*used to setup UnitTest or setup Interperter */
+
 //        unitTest();
 
         if(args.length <2){
@@ -75,12 +54,9 @@ public class Main {
             setUpServer(args);
         }
 
-
         /*
             set up server here
          */
-
-
         Server server = new Server(serverPort,rootPath);
         server.start();
 
@@ -88,6 +64,22 @@ public class Main {
         Interpreter interpreter = new Interpreter(rootPath,address,serverPort);
         interpreter.interprept();
 
+    }
+
+    /*Unitest*/
+    private static  void unitTest(){
+        rootPath += "test\\";
+
+        SingleFileTest singleFileTest = new SingleFileTest("public",rootPath+"testData.txt");
+        singleFileTest.test();
+
+        //accept all files
+        FolderGrepTest folderGrepTest = new FolderGrepTest("public",rootPath,".*");
+        folderGrepTest.test();
+
+        //accpet only txt files
+        folderGrepTest = new FolderGrepTest("public",rootPath,".*\\.txt");
+        folderGrepTest.test();
 
 
     }
